@@ -35,8 +35,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-        }
 
+        }
         .logo {
             font-size: 2rem;
             font-weight: 900;
@@ -237,7 +237,7 @@
             0% { transform: translateX(100vw); }
             100% { transform: translateX(-100%); }
         }
-
+    
         .scrolling-text span {
             font-size: clamp(1.2rem, 2.5vw, 2rem);
             font-weight: 800;
@@ -256,7 +256,7 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
+    
         .section-title {
             text-align: center;
             font-size: clamp(2.5rem, 6vw, 4rem);
@@ -267,7 +267,7 @@
             background-clip: text;
             position: relative;
         }
-
+    
         .section-title::after {
             content: '';
             position: absolute;
@@ -279,7 +279,7 @@
             background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
             border-radius: 2px;
         }
-
+     
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -336,7 +336,7 @@
         }
 
         /* ===========================================
-           STATS SECTION
+           STATS SECTION    
         =========================================== */
         .stats-section {
             padding: 8rem 2rem;

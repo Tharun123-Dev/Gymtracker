@@ -23,7 +23,6 @@ def gym_users(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body.decode("utf-8"))
-
             name = data.get("name")
             age = data.get("age")
             weight = data.get("weight")

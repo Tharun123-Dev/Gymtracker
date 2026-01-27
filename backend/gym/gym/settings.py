@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tracker',
     'corsheaders',
+<<<<<<< HEAD
      
+=======
+    'User',
+>>>>>>> 56a5dee40696338ccba522a4ec9b40c1e8b7f55d
 ]
 
 MIDDLEWARE = [
