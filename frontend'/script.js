@@ -296,4 +296,194 @@ loadUsers();
         console.log('🌟 Elite Gym Tracker Pro v2.0 loaded successfully!');
         console.log('💾 Data stored in localStorage: elite-gym-tracker-pro-v2');
         console.log('📱 Fully responsive | ⚡ Vanilla JS | 🎨 CSS3 Animations');
+    // Simple modal handler for gym cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.gym-card');
+    const modals = document.querySelectorAll('.modal');
+    const closes = document.querySelectorAll('.close');
+
+    // Open modal on card click
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        });
+    });
+
+    // Close modal on X click
+    closes.forEach(close => {
+        close.addEventListener('click', function() {
+            this.closest('.modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Close on outside click
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const mapButtons = document.querySelectorAll('.maps-btn');
     
+    mapButtons.forEach(btn => {
+        // Touch feedback for mobile
+        btn.addEventListener('touchstart', function(e) {
+            this.style.transform = 'scale(0.95)';
+        });
+        
+        btn.addEventListener('touchend', function(e) {
+            this.style.transform = '';
+        });
+        
+        btn.addEventListener('click', function() {
+            // Haptic feedback simulation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            console.log('✅ Maps opened for Cult Fit Banjara Hills');
+        });
+    });
+});
+
+// subscription
+class GymSubscription {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.userData = {};
+        this.selectedPlan = null;
+        
+        // User form submit
+        document.querySelector('.user-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.collectUserData();
+            this.showPlans();
+        });
+
+        // Plan selection
+        document.querySelectorAll('.plan-select').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.selectPlan(e.currentTarget.dataset.duration);
+            });
+        });
+
+        // Back buttons
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', () => this.goBack());
+        });
+
+        // Payment form
+        document.querySelector('.payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.processPayment();
+        });
+
+        // Format card input
+        this.formatCardNumber();
+    }
+
+    collectUserData() {
+        this.userData = {
+            name: document.getElementById('user-name').value,
+            email: document.getElementById('user-email').value,
+            age: document.getElementById('user-age').value,
+            weight: document.getElementById('user-weight').value,
+            gymType: document.getElementById('gym-type').value,
+            description: document.getElementById('user-desc').value
+        };
+    }
+
+    showPlans() {
+        document.getElementById('user-info').textContent = 
+            `${this.userData.name}, ${this.userData.gymType} plan ready!`;
+        
+        this.switchStep('user-form', 'plans');
+    }
+
+    selectPlan(duration) {
+        this.selectedPlan = {
+            duration: parseInt(duration),
+            price: document.querySelector(`[data-duration="${duration}"]`).dataset.price
+        };
+        
+        document.getElementById('plan-summary').innerHTML = 
+            `Plan: ${this.selectedPlan.duration} months | Total: ₹${this.selectedPlan.price}`;
+        document.getElementById('final-amount').textContent = this.selectedPlan.price;
+        
+        this.switchStep('plans', 'payment');
+    }
+
+    goBack() {
+        const activeStep = document.querySelector('.sub-step.active');
+        if (activeStep.id === 'plans') {
+            this.switchStep('plans', 'user-form');
+        } else if (activeStep.id === 'payment') {
+            this.switchStep('payment', 'plans');
+        }
+    }
+
+    switchStep(hideId, showId) {
+        document.getElementById(hideId).classList.remove('active');
+        document.getElementById(showId).classList.add('active');
+    }
+
+    processPayment() {
+        // Simulate payment processing
+        const btn = document.querySelector('.pay-btn');
+        btn.textContent = 'Processing...';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+            // SUCCESS - Redirect to main.html
+            document.getElementById('success').classList.add('active');
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 2000);
+        }, 2000);
+    }
+
+    formatCardNumber() {
+        const cardInput = document.getElementById('card-number');
+        cardInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let matches = value.match(/\d{4,16}/g);
+            let match = matches && matches[0] || '';
+            let parts = [];
+            
+            for (let i = 0, len = match.length; i < len; i += 4) {
+                parts.push(match.substring(i, i + 4));
+            }
+            
+            if (parts.length) {
+                e.target.value = parts.join(' ');
+            } else {
+                e.target.value = value;
+            }
+        });
+    }
+}
+
+// Initialize when DOM loads
+document.addEventListener('DOMContentLoaded', () => new GymSubscription());
