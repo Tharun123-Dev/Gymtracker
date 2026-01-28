@@ -1,6 +1,6 @@
 
 
-const API_URL = "http://127.0.0.1:8000/api/gym-users/";
+const API_URL = "https://gymtracker-gx6e.onrender.com/api/gym-users/";
 
 const form = document.getElementById("gymForms");
 const tableBody = document.getElementById("tableBody");
