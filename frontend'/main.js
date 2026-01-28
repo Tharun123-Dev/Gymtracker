@@ -1,5 +1,5 @@
 // Your existing JS code stays EXACTLY THE SAME
-const API="http://127.0.0.1:8000/api";
+const API="https://gymtracker-gx6e.onrender.com/api";
 let selectedUser=null;
 
 /* ---------- AUTH ---------- */
