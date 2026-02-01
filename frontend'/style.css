@@ -1171,6 +1171,7 @@ tr:hover {
 .form-group {
     margin-bottom: 25px;
     text-align: left;
+    
 }
 
 .form-group label {
@@ -1178,6 +1179,7 @@ tr:hover {
     margin-bottom: 8px;
     font-weight: 600;
     color: #1e293b;
+    
 }
 
 .form-group input,
@@ -1189,7 +1191,10 @@ tr:hover {
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: white;
+    /* background: white; */
+    /* color: black; */
+    background-color:  #f1f5f9;
+    color: #0f172a;
 }
 
 .form-group input:focus,
@@ -1199,6 +1204,7 @@ tr:hover {
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
     transform: translateY(-2px);
+    background: #e2e8f0;   /* ✅ prevents dark focus */
 }
 
 .form-row {
@@ -1310,6 +1316,26 @@ tr:hover {
 /* Payment Form */
 #payment .form-row { gap: 15px; }
 
+/* our styling */
+/* ========== */
+/* Payment form input default */
+#payment input {
+    background-color: #f2f2f2;   /* light gray */
+    color: #000;                 /* black text */
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+/* On focus (when user clicks input) */
+#payment input:focus {
+    background-color: #eaeaea;   /* slightly darker light gray */
+    color: #000;                 /* keep text black */
+    border: 1px solid #888;
+    outline: none;
+    box-shadow: none;            /* removes browser glow */
+}
+
+
 /* Success */
 .success-overlay {
     position: fixed;
@@ -1364,3 +1390,8 @@ tr:hover {
     .sub-step { padding: 30px 20px; margin: 0 5px; border-radius: 20px; }
     .plan-card { padding: 25px 20px; }
 }
+
+
+
+/* our styling */
+
